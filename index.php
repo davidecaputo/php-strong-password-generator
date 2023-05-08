@@ -1,13 +1,7 @@
-<?php 
+<?php
+    include './functions.php';
     $numberPassword = $_GET['numberPassword'];
-    $elementPassword = 'ABCDEFGHIJKLMNOPQESTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
-    $password = '';
-    if($numberPassword){
-        do{
-            $randomNumber = rand(6, (strlen($elementPassword) - 1));
-            $password .= $elementPassword[$randomNumber];
-        } while(strlen($password) < $numberPassword);
-    }
+    $result = createPassword($numberPassword);
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +21,10 @@
             <input type="number" name="numberPassword" id="numberPassword" min="6" max="50" class="form-control" placeholder="Inserisci un numero tra 6 e 50">
             <button type="submit" class="btn btn-success">Genera password</button>
         </form>
-        <?php if($password){ ?>
+        <?php if($result){ ?>
             <h2>La tua password è:</h2>
             <div class="card p-5">
-                <p><?php echo $password ?></p>
+                <p><?php echo $result ?></p>
             </div>
         <?php } ?>
     </div>
